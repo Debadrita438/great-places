@@ -13,6 +13,9 @@ export default (state = initialState, action) => {
                 action.placeData.title,
                 action.placeData.image
             );
+            return {
+                places: state.places.concat(newPlace)
+            };
         case SET_PLACES:
             return {
                 places: action.places.map(pl => new Place(
@@ -20,9 +23,6 @@ export default (state = initialState, action) => {
                     pl.title,
                     pl.imageUri
                 ))
-            }
-            return {
-                places: state.places.concat(newPlace)
             }
         default:
             return state;
