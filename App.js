@@ -5,6 +5,14 @@ import ReduxThunk  from 'redux-thunk';
 
 import PlacesNavigation from './navigation/PlacesNavigation';
 import placesReducer from './store/placesReducer';
+import { init } from './helpers/db';
+
+init().then(() => {
+  console.log('Initializing database');
+}).catch(err => {
+  console.log('Initializing db failed');
+  console.log(err);
+});
 
 const rootReducers = combineReducers({
   places: placesReducer
