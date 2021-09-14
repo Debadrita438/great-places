@@ -4,17 +4,23 @@ import { useDispatch } from 'react-redux';
 
 import Colors from '../constants/Colors';
 import * as placesAction from '../store/placesAction';
+import ImageSelector from '../components/ImageSelector';
 
 const NewPlaceScreen = props => {
     const[title, setTitle] = useState('');
+    const [image, setImage] = useState();
     const dispatch = useDispatch();
 
     const tiltleChangeHandler = text => {
         setTitle(text);
     }
 
+    const imageTakenHandler = imagePath => {
+        setImage(imagePath);
+    }
+
     const savePlaceHandler = () => {
-        dispatch(placesAction.addPlace(title));
+        dispatch(placesAction.addPlace(title, image));
         props.navigation.goBack();
     }
 
@@ -27,6 +33,7 @@ const NewPlaceScreen = props => {
                     onChangeText={tiltleChangeHandler}
                     value={title}
                 />
+                <ImageSelector onImageTaken={imageTakenHandler} />
                 <Button
                     title='Save Place'
                     color={Colors.primary}
