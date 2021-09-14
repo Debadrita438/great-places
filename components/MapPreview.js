@@ -17,7 +17,7 @@ const MapPreview = props => {
         //     props.location.lng
         // }&key=AIzaSyAwd0FyP2FruH4r19WrpC-8KO25JQHQPOw`
 
-        imagePreviewUrl = `https://maps.geoapify.com/v1/staticmap?style=osm-carto&width=400&height=200&center=lonlat:${props.location.lng},${props.location.lat}&zoom=14&apiKey=${ENV.googleApiKey}`
+        imagePreviewUrl = `https://maps.geoapify.com/v1/staticmap?style=osm-carto&width=400&height=200&center=lonlat:${props.location.lng},${props.location.lat}&zoom=14&marker=lonlat:${props.location.lng},${props.location.lat};color:%23ff0000;size:medium;text:A&apiKey=${ENV.geoapifyApiKey}`
     }
     
     return (

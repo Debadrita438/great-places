@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { StyleSheet, Text, View, TextInput, ScrollView, Button } from 'react-native';
 import { useDispatch } from 'react-redux';
 
@@ -10,6 +10,8 @@ import LocationPicker from '../components/LoacationPicker';
 const NewPlaceScreen = props => {
     const[title, setTitle] = useState('');
     const [image, setImage] = useState();
+    const [selectedLocation, setSelectedLocation] = useState();
+
     const dispatch = useDispatch();
 
     const tiltleChangeHandler = text => {
@@ -20,8 +22,12 @@ const NewPlaceScreen = props => {
         setImage(imagePath);
     }
 
+    const locationPickedHandler = useCallback(location => {
+        setSelectedLocation(location)
+    }, [])
+
     const savePlaceHandler = () => {
-        dispatch(placesAction.addPlace(title, image));
+        dispatch(placesAction.addPlace(title, image, selectedLocation));
         props.navigation.goBack();
     }
 
@@ -35,7 +41,7 @@ const NewPlaceScreen = props => {
                     value={title}
                 />
                 <ImageSelector onImageTaken={imageTakenHandler} />
-                <LocationPicker navigation={props.navigation} />
+                <LocationPicker navigation={props.navigation} onLocationPicked={locationPickedHandler} />
                 <Button
                     title='Save Place'
                     color={Colors.primary}
