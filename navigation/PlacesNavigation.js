@@ -10,7 +10,7 @@ import MapScreen from '../screen/MapScreen';
 
 const PlacesNavigation = createStackNavigator({
     Places: PlacesListScreen,
-    PlaceDetails: PlacesDetailsScreen,
+    PlaceDetail: PlacesDetailsScreen,
     NewPlace: NewPlacesScreen,
     Map: MapScreen
 }, {

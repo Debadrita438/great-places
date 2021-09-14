@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, ScrollView, Button } from 'react-native';
+import { useDispatch } from 'react-redux';
 
 import Colors from '../constants/Colors';
+import * as placesAction from '../store/placesAction';
 
 const NewPlaceScreen = props => {
     const[title, setTitle] = useState('');
+    const dispatch = useDispatch();
 
     const tiltleChangeHandler = text => {
         setTitle(text);
     }
 
     const savePlaceHandler = () => {
-
+        dispatch(placesAction.addPlace(title));
+        props.navigation.goBack();
     }
 
     return (
